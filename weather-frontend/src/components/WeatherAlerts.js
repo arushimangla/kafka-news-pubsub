@@ -12,7 +12,7 @@ const WeatherAlerts = () => {
   useEffect(() => {
     // const wsUrl = process.env.REACT_APP_WEBSOCKET_URL || `ws://localhost:5000`;
     // console.log("WebSocket URL:", wsUrl);
-    const wsUrl = process.env.REACT_APP_WEBSOCKET_URL || "ws://web-socket:5000";
+    const wsUrl = "ws://web-socket:5000";
     const socket = new WebSocket(wsUrl);
 
     // Create WebSocket connection
