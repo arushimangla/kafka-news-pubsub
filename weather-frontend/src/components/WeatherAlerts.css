@@ -1,0 +1,87 @@
+.weather-alerts {
+    font-family: Arial, sans-serif;
+    margin: 0 auto;
+    padding: 20px;
+    max-width: 900px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  h1 {
+    text-align: center;
+    color: #333;
+  }
+  
+  h2, h3 {
+    color: #444;
+  }
+  
+  .subscription {
+    margin: 20px 0;
+  }
+  
+  .subscribe-btn {
+    background-color: #ff7043;
+    color: white;
+    padding: 10px 20px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .subscribe-btn:hover {
+    background-color: #f4511e;
+  }
+  
+  .subscribed-topics ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .subscribed-topics li {
+    background-color: #eef2f3;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+  }
+  
+  .alert {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 15px;
+    border-radius: 5px;
+    margin: 20px 0;
+  }
+  
+  .fire-news {
+    margin-top: 20px;
+  }
+  
+  .news-article {
+    background-color: #e9ecef;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+  }
+  
+  .news-article h4 {
+    color: #007bff;
+    font-size: 18px;
+  }
+  
+  .news-article p {
+    color: #333;
+  }
+  
+  .news-article a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .news-article a:hover {
+    text-decoration: underline;
+  }
+  

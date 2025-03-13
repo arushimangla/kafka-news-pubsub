@@ -1,0 +1,9 @@
+{
+    "name": "kafka-consumer",
+    "version": "1.0.0",
+    "dependencies": {
+        "kafkajs": "^2.2.4",
+        "node-fetch": "^2.6.7",
+        "ws": "^8.18.1"
+    }
+}
