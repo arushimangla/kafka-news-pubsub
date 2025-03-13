@@ -9,6 +9,19 @@ const WeatherAlerts = () => {
   const socketRef = useRef(null); // Store the WebSocket reference
   const topicsRef = useRef(new Set()); // Store active subscriptions
 
+  // Helper function that attempts to send a subscription message when the socket is open.
+  const subscribeWhenReady = (topic) => {
+    const trySubscribe = setInterval(() => {
+      if (socketRef.current && socketRef.current.readyState === WebSocket.OPEN) {
+        socketRef.current.send(JSON.stringify({ subscribe: true, location: topic }));
+        console.log(`🔔 Sent subscription for ${topic} (after waiting for open state)`);
+        clearInterval(trySubscribe);
+      } else {
+        console.log(`⌛ Waiting for WebSocket to open for subscribing to ${topic}...`);
+      }
+    }, 1000);
+  };
+
   useEffect(() => {
     // Use wss:// because the ALB likely terminates SSL.
     const wsUrl = "wss://my-weather-app-alb-1-605109522.us-west-2.elb.amazonaws.com:5000";
@@ -20,6 +33,7 @@ const WeatherAlerts = () => {
     socketRef.current.onopen = () => {
       console.log('✅ Connected to WebSocket server');
       topicsRef.current.forEach((topic) => {
+        // Send subscriptions for any topics that were already added.
         socketRef.current.send(JSON.stringify({ subscribe: true, location: topic }));
       });
     };
@@ -57,9 +71,8 @@ const WeatherAlerts = () => {
     socketRef.current.onclose = () => {
       console.log('❌ WebSocket connection closed. Reconnecting in 5s...');
       setTimeout(() => {
-        if (socketRef.current.readyState === WebSocket.CLOSED) {
-          socketRef.current = new WebSocket(wsUrl);
-        }
+        // Reinitialize the WebSocket connection and update our ref.
+        socketRef.current = new WebSocket(wsUrl);
       }, 5000);
     };
 
@@ -76,14 +89,10 @@ const WeatherAlerts = () => {
     if (!topicsRef.current.has(topic)) {
       topicsRef.current.add(topic);
       setSubscribedTopics((prev) => [...prev, topic]);
-      console.log(`🔔 Subscribed to ${topic} alerts`);
+      console.log(`🔔 Subscribed to ${topic} alerts (queued)`);
 
-      // Send subscription message if the WebSocket connection is open.
-      if (socketRef.current && socketRef.current.readyState === WebSocket.OPEN) {
-        socketRef.current.send(JSON.stringify({ subscribe: true, location: topic }));
-      } else {
-        console.warn("⚠️ WebSocket not open. Subscription request failed.");
-      }
+      // Instead of checking once, try sending the subscription until the socket is open.
+      subscribeWhenReady(topic);
     } else {
       console.log(`ℹ️ Already subscribed to ${topic} alerts`);
     }
