@@ -5,7 +5,7 @@ const WeatherAlerts = () => {
   const [subscribedTopics, setSubscribedTopics] = useState([]);
   const [alert, setAlert] = useState('');
   const [fireNews, setFireNews] = useState([]);
-  const topics = ['California', 'Florida', 'Washington']; // Available topics (States)
+  const topics = ['California', 'Florida', 'Washington']; // Available topics (States) 
   const socketRef = useRef(null); // Store the WebSocket reference
   const topicsRef = useRef(new Set()); // Store active subscriptions
 
