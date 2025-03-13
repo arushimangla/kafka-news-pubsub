@@ -130,7 +130,7 @@ services:
   frontend:
     build: ../weather-frontend
     container_name: weather-frontend
-    platform: linux/arm64
+    platform: linux/amd64
     ports:
       - "3000:3000"   # Exposing the frontend
     environment:
