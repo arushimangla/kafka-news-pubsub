@@ -10,8 +10,10 @@ const WeatherAlerts = () => {
   const topicsRef = useRef(new Set()); // Store active subscriptions
 
   useEffect(() => {
-    const wsUrl = process.env.REACT_APP_WEBSOCKET_URL || `ws://localhost:5000`;
-    console.log("WebSocket URL:", wsUrl);
+    // const wsUrl = process.env.REACT_APP_WEBSOCKET_URL || `ws://localhost:5000`;
+    // console.log("WebSocket URL:", wsUrl);
+    const wsUrl = process.env.REACT_APP_WEBSOCKET_URL || "ws://localhost:5000";
+    const socket = new WebSocket(wsUrl);
 
     // Create WebSocket connection
     socketRef.current = new WebSocket(wsUrl);
