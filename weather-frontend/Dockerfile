@@ -8,7 +8,7 @@
 # RUN apt-get update && apt-get install -y python3 make g++ && \
 #     ln -s /usr/bin/python3 /usr/bin/python
 
-FROM node:18 AS builder
+FROM node:18-alpine AS builder
 WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm install
