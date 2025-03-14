@@ -134,6 +134,6 @@ services:
     ports:
       - "3000:3000"   # Exposing the frontend
     environment:
-      REACT_APP_WEBSOCKET_URL: ws://my-weather-app-alb-xxxxxx.us-west-2.elb.amazonaws.com/ws   # Frontend connects to WebSocket server
+      REACT_APP_WEBSOCKET_URL: ws://my-weather-app-alb-2-657489689.us-west-2.elb.amazonaws.com/ws   # Frontend connects to WebSocket server
     depends_on:
       - websocket-server
