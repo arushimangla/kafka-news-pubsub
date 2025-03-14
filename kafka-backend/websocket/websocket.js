@@ -23,8 +23,23 @@ const consumers = [
   require("./consumer3/consumer"),
 ];
 
-// Create a new WebSocket server on port 5000
-const wss = new WebSocket.Server({ port: 5000 });
+const app = express();
+
+// Add a health check endpoint that returns 200 OK.
+app.get('/health', (req, res) => {
+  res.status(200).send('OK');
+});
+
+// Create an HTTP server using the Express app.
+const server = http.createServer(app);
+
+// ------------------------
+// Create a WebSocket server that attaches to the same HTTP server on port 5000.
+// ------------------------
+const wss = new WebSocket.Server({ server });
+
+// // Create a new WebSocket server on port 5000
+// const wss = new WebSocket.Server({ port: 5000 });
 
 console.log("🚀 WebSocket server is running on ws://localhost:5000/");
 
