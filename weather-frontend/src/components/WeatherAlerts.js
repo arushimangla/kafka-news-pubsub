@@ -24,7 +24,7 @@ const WeatherAlerts = () => {
 
   useEffect(() => {
     // Use wss:// because the ALB likely terminates SSL.
-    const wsUrl = "wss://my-weather-app-alb-1-605109522.us-west-2.elb.amazonaws.com/ws";
+    const wsUrl = "ws://my-weather-app-alb-1-605109522.us-west-2.elb.amazonaws.com/ws";
     // const wsUrl = process.env.REACT_APP_WEBSOCKET_URL || "ws://localhost/ws";
     
     // Create a single WebSocket connection and store it in the ref.
