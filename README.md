@@ -1,3 +1,63 @@
+# To run the service on AWS
+
+Create an EC2 Instance, Application Load Balancer and Target Group for the EC2 instance.
+
+# SSH into Your Instance
+Open your terminal and connect with:
+
+ssh -i /path/to/your-key.pem ubuntu@your-ec2-public-dns
+
+# Update the Package List:
+
+sudo apt-get update
+
+# Install Docker:
+On Ubuntu, you can install Docker with:
+
+sudo apt-get install -y docker.io
+
+# After installation, add your user to the Docker group to avoid using sudo every time:
+
+sudo usermod -aG docker $USER
+
+# Download and install Docker Compose by running:
+
+sudo curl -L "https://github.com/docker/compose/releases/download/v2.20.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+
+sudo chmod +x /usr/local/bin/docker-compose
+
+# Verify the installation:
+
+docker-compose --version
+
+# Clone or Transfer Your Repository:
+
+If your project is hosted on GitHub, clone it directly:
+
+git clone https://github.com/your-username/your-repo.git
+
+# Navigate to the Project Directory:
+
+cd distributed-project-main
+
+# Switch to the kafka-setup Folder:
+
+cd kafka-setup
+
+# Launch the Containers:
+With Docker and Docker Compose installed, start your services by running:
+
+docker-compose up -d
+
+# Verify the Containers:
+Check that all containers are up and running:
+
+docker ps
+
+# You can also view the logs to ensure that services started correctly:
+
+docker-compose logs
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
